@@ -29,3 +29,40 @@ The entire regional team that utilizes automation tools and analytics dashboards
 - SharePoint List: Serves as the central repository for all reported issues, including status tracking.
 - Power Automate (Flow 2): Sends a follow-up email to the issuer once the issue is marked as resolved, requesting confirmation to close the issue.
 
+---
+
+## Workflow Description
+
+The solution consists of two Power Automate flows that work together to manage the lifecycle of issue reporting and resolution.
+
+### Flow 1: Issue Submission & Registration
+
+**Trigger:** When a new response is submitted in the Microsoft Form
+
+**Steps**:
+1. **Compose Logo**
+   - Prepares a branded element for email notifications.
+
+2. **Get Response Details**
+   - Retrieves all form inputs such as issue description, category, urgency, and issuer’s email.
+
+3. **Search User**
+   - Looks up the issuer in the organization directory using their email address.
+
+4. **Get User UPN & Name**
+   - Extracts the User Principal Name and display name for personalization and tracking.
+
+5. **Get Manager Email**
+   - Fetches the issuer’s manager email to include as CC in notifications.
+
+6. **Create Item in SharePoint List**
+   - Logs the issue with metadata:
+     - Issue details
+     - Issuer name and email
+     - Manager email
+     - Status = “Open”
+     - Submission timestamp
+
+7. **Condition: Attachment Handling**
+   - Checks if the user uploaded a screenshot or file:
+     - **If Yes:** Parse JSON attachment
