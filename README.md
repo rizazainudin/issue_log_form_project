@@ -65,10 +65,29 @@ The solution consists of two Power Automate flows that work together to manage t
      - Status = “Open”
      - Submission timestamp
 
+
 7. **Condition: Attachment Handling**
    - Checks if the user uploaded a screenshot or file:
-     - **If Yes:** Parse JSON attachment
+     - **If Yes:**
+       - Parse JSON attachment
+       - Retrieve file content using path
+       - Add attachment to the SharePoint item
+     - **If No:**
+       - Skip attachment steps.
+
+8. **Compose Message**
+   - Builds a formatted email body using HTML code including:
+     - Issue details
+     - Reference ID
+     - Branding (logo)
+     - CC to manager
+
+9. **Send Email from Shared Mailbox**
+   - Notify the issuer via email with manager CC.
+
     
-**Flow 1 Screenshot**    
+**Flow 1 Screenshot**
+
 ![Flow 1 Snap 1](https://github.com/rizazainudin/issue_log_form_project/blob/main/autoflow_1_snap_1.png)
 ![Flow 1 Snap 2](https://github.com/rizazainudin/issue_log_form_project/blob/main/autoflow_1_snap_2.png)
+![Flow 1 Snap 3](https://github.com/rizazainudin/issue_log_form_project/blob/main/autoflow_1_snap_3.png)
