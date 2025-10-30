@@ -20,3 +20,12 @@ The entire regional team that utilizes automation tools and analytics dashboards
 - Enable managers and team members to monitor and manage ad hoc tasks effectively.
 - Ensure that issues are properly closed with confirmation from the original issuer
 
+---
+
+## Tools & Technologies Used
+
+- Microsoft Forms: Used to collect issue submissions from users.
+- Power Automate (Flow 1): Automatically registers submitted issues into a SharePoint list and sends a confirmation email to the issuer.
+- SharePoint List: Serves as the central repository for all reported issues, including status tracking.
+- Power Automate (Flow 2): Sends a follow-up email to the issuer once the issue is marked as resolved, requesting confirmation to close the issue.
+
