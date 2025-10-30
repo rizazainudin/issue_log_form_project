@@ -39,7 +39,7 @@ The solution consists of two Power Automate flows that work together to manage t
 
 **Trigger:** When a new response is submitted in the Microsoft Form
 
-**Steps**:
+**Steps:**
 1. **Compose Logo**
    - Prepares a branded element for email notifications.
 
@@ -51,9 +51,11 @@ The solution consists of two Power Automate flows that work together to manage t
 
 4. **Get User UPN & Name**
    - Extracts the User Principal Name and display name for personalization and tracking.
+   - Expression to get UPN: *body('SearchUser')['value'][0]['UserPrincipalName']*
+   - Expression to get Name: *body('SearchUser')['value'][0]['GivenName']*
 
 5. **Get Manager Email**
-   - Fetches the issuer’s manager email to include as CC in notifications.
+   - Fetches the issuer’s manager email using issuer's UPN to include as CC in notifications.
 
 6. **Create Item in SharePoint List**
    - Logs the issue with metadata:
@@ -66,3 +68,7 @@ The solution consists of two Power Automate flows that work together to manage t
 7. **Condition: Attachment Handling**
    - Checks if the user uploaded a screenshot or file:
      - **If Yes:** Parse JSON attachment
+    
+**Flow 1 Screenshot**    
+![Flow 1 Snap 1](https://github.com/rizazainudin/issue_log_form_project/blob/main/autoflow_1_snap_1.png)
+![Flow 1 Snap 2](https://github.com/rizazainudin/issue_log_form_project/blob/main/autoflow_1_snap_2.png)
