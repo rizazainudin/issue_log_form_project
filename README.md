@@ -6,6 +6,17 @@ A secondary flow confirms resolution and closure, ensuring visibility and accoun
 
 ## Overview
 As the Automation and Analytics team continues to expand its portfolio of projects, the frequency of day-to-day issues has also increased. These issues are often ad hoc in nature and can be overlooked or deprioritized by managers due to their informal reporting—typically via email or Teams messages. This results in delays in resolution and consumes valuable time that could be spent on ongoing development work.
+
 To address this, a structured issue tracking system was needed—something that didn’t exist previously. The solution was to create an automated issue reporting and tracking mechanism using Power Platform tools.
-Stakeholders:
+
+### Stakeholders
 The entire regional team that utilizes automation tools and analytics dashboards.
+
+---
+
+## Objectives
+- Provide a centralized and structured way to report issues.
+- Ensure all reported issues are tracked and not missed due to informal communication.
+- Enable managers and team members to monitor and manage ad hoc tasks effectively.
+- Ensure that issues are properly closed with confirmation from the original issuer
+
