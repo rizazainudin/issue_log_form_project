@@ -64,8 +64,8 @@ Overview
 
 7. **Condition: Attachment Handling**: Checks if the user uploaded a screenshot or file.
    - **If Yes:**
-    - Parse JSON attachment [*(refer here the JSON code)*](https://github.com/rizazainudin/issue_log_form_project/blob/main/Parse_JSON_Attachment.json)
-    - Retrieve file content using path
+    - Parse JSON attachment [*(refer here the JSON code)*](https://github.com/rizazainudin/issue_log_form_project/blob/main/Parse%20JSON%20Attachment.json)
+    - Retrieve file content using path: *first(body('Parse_JSON_Attachment'))?['name']*
     - Add attachment to the SharePoint item
   - **If No:**
     - Skip attachment steps.
@@ -77,11 +77,16 @@ Overview
 
 9. **Send Email from Shared Mailbox**: Notify the issuer via email with manager CC, and team distribution list email.
 
-**Flow 1 Screenshot**
+*Scope 2 - CATCH*
+1. **Post a message in a chat/a channel**: To let the developers know that the TRY scope fails, is skipped, or times out
+
+
+**Flow 1 Screenshot**:
 
 ![Flow 1 Snap 1](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_1.png)
 ![Flow 1 Snap 2](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_2.png)
 ![Flow 1 Snap 3](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_3.png)
+![Flow 1 Snap 4](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_4.png)
 
 Parse JSON Attachment:
 ```json
