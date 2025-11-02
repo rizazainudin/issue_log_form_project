@@ -91,11 +91,12 @@ Overview
 ### Flow 2: Issue Resolution & Closure Confirmation
 
 Overview
-![Flow 2 Overview](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_2_Overview.jpg)
+![Flow 2 Overview](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_2_Overview.png)
 
 **Trigger**: When an item is modified in the SharePoint list (trigger condition: issue status changes to "Issue Rectified").
 
 **Steps** (including additional steps):
+
 *Scope 1: TRY (Main Process)*
 
 1. **Compose Logo**: Prepares branding for email notifications.
@@ -108,4 +109,5 @@ Overview
    6.2. If "Rejected", notify developer to connect individually with issuer.
 
 *Scope 2: CATCH (Error Handling)*
+
 Post Message in Chat – Sends an alert to a Teams channel if the main process fails, is skipped, or times out.
