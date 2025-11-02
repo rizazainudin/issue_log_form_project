@@ -88,48 +88,24 @@ Overview
 ![Flow 1 Snap 3](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_3.png)
 ![Flow 1 Snap 4](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_4.png)
 
-Parse JSON Attachment:
-```json
-{
-    "type": "array",
-    "items": {
-        "type": "object",
-        "properties": {
-            "name": {
-                "type": "string"
-            },
-            "link": {
-                "type": "string"
-            },
-            "id": {
-                "type": "string"
-            },
-            "type": {},
-            "size": {
-                "type": "integer"
-            },
-            "referenceId": {
-                "type": "string"
-            },
-            "driveId": {
-                "type": "string"
-            },
-            "status": {
-                "type": "integer"
-            },
-            "uploadSessionUrl": {}
-        },
-        "required": [
-            "name",
-            "link",
-            "id",
-            "type",
-            "size",
-            "referenceId",
-            "driveId",
-            "status",
-            "uploadSessionUrl"
-        ]
-    }
-}
-```
+### Flow 2: Issue Resolution & Closure Confirmation
+
+Overview
+![Flow 2 Overview](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_2_Overview.jpg)
+
+**Trigger**: When an item is modified in the SharePoint list (trigger condition: issue status changes to "Issue Rectified").
+
+**Steps** (including additional steps):
+*Scope 1: TRY (Main Process)*
+
+1. **Compose Logo**: Prepares branding for email notifications.
+2. **Search Name**: Looks up the issuer’s details from the Office 365.
+3. **Get Name**: Retrieves the display name from previous action.
+4. **Compose Message**: Builds an email body informing the issuer that the issue has been resolved and requesting confirmation.
+5. **Send Email with Options**: Sends an email that includes actionable buttons ("Approve" and "Reject").
+6. **Condition** – Evaluates the issuer’s response to update the issue status accordingly.
+   6.1. If "Approve", update SharePoint item status to "Completed".
+   6.2. If "Rejected", notify developer to connect individually with issuer.
+
+*Scope 2: CATCH (Error Handling)*
+Post Message in Chat – Sends an alert to a Teams channel if the main process fails, is skipped, or times out.
