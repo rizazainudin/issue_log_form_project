@@ -37,57 +37,94 @@ The solution consists of two Power Automate flows that work together to manage t
 
 ### Flow 1: Issue Submission & Registration
 
-**Trigger:** When a new response is submitted in the Microsoft Form
+Overview
 
-**Steps:**
-1. **Compose Logo**
-   - Prepares a branded element for email notifications.
+![Flow 1 Overview](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_Overview.jpg)
 
-2. **Get Response Details**
-   - Retrieves all form inputs such as issue description, category, urgency, and issuer’s email.
 
-3. **Search User**
-   - Looks up the issuer in the organization directory using their email address.
+**Trigger**: When a new response is submitted in the Microsoft Form
 
-4. **Get User UPN & Name**
-   - Extracts the User Principal Name and display name for personalization and tracking.
+**Steps** (including additional steps):
+
+*Scope 1 - TRY*
+
+1. **Compose Logo**: Prepares a branded element for email notifications.
+2. **Get Response Details**: Retrieves all form inputs such as issue description, category, urgency, and issuer’s email.
+3. **Search User**: Looks up the issuer in the organization directory using their email address.
+4. **Get User UPN & Name**: Extracts the User Principal Name and display name for personalization and tracking.
    - Expression to get UPN: *body('SearchUser')['value'][0]['UserPrincipalName']*
    - Expression to get Name: *body('SearchUser')['value'][0]['GivenName']*
 
-5. **Get Manager Email**
-   - Fetches the issuer’s manager email using issuer's UPN to include as CC in notifications.
+5. **Get Manager Email**: Fetches the issuer’s manager email using issuer's UPN to include as CC in notifications.
+6. **Create Item in SharePoint List**: Logs the issue with metadata:
+  - Issue details
+  - Issuer email
+  - Manager email
+  - Status = "Pending"
 
-6. **Create Item in SharePoint List**
-   - Logs the issue with metadata:
-     - Issue details
-     - Issuer name and email
-     - Manager email
-     - Status = “Open”
-     - Submission timestamp
+7. **Condition: Attachment Handling**: Checks if the user uploaded a screenshot or file.
+   - **If Yes:**
+    - Parse JSON attachment [*(refer here the JSON code)*](https://github.com/rizazainudin/issue_log_form_project/blob/main/Parse_JSON_Attachment.json)
+    - Retrieve file content using path
+    - Add attachment to the SharePoint item
+  - **If No:**
+    - Skip attachment steps.
 
+8. **Compose Message**: Builds a formatted email body using HTML code
+  - Issue details
+  - Reference ID
+  - Branding (logo)
 
-7. **Condition: Attachment Handling**
-   - Checks if the user uploaded a screenshot or file:
-     - **If Yes:**
-       - Parse JSON attachment
-       - Retrieve file content using path
-       - Add attachment to the SharePoint item
-     - **If No:**
-       - Skip attachment steps.
+9. **Send Email from Shared Mailbox**: Notify the issuer via email with manager CC, and team distribution list email.
 
-8. **Compose Message**
-   - Builds a formatted email body using HTML code including:
-     - Issue details
-     - Reference ID
-     - Branding (logo)
-     - CC to manager
-
-9. **Send Email from Shared Mailbox**
-   - Notify the issuer via email with manager CC.
-
-    
 **Flow 1 Screenshot**
 
-![Flow 1 Snap 1](https://github.com/rizazainudin/issue_log_form_project/blob/main/autoflow_1_snap_1.png)
-![Flow 1 Snap 2](https://github.com/rizazainudin/issue_log_form_project/blob/main/autoflow_1_snap_2.png)
-![Flow 1 Snap 3](https://github.com/rizazainudin/issue_log_form_project/blob/main/autoflow_1_snap_3.png)
+![Flow 1 Snap 1](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_1.png)
+![Flow 1 Snap 2](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_2.png)
+![Flow 1 Snap 3](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_3.png)
+
+Parse JSON Attachment:
+```json
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "link": {
+                "type": "string"
+            },
+            "id": {
+                "type": "string"
+            },
+            "type": {},
+            "size": {
+                "type": "integer"
+            },
+            "referenceId": {
+                "type": "string"
+            },
+            "driveId": {
+                "type": "string"
+            },
+            "status": {
+                "type": "integer"
+            },
+            "uploadSessionUrl": {}
+        },
+        "required": [
+            "name",
+            "link",
+            "id",
+            "type",
+            "size",
+            "referenceId",
+            "driveId",
+            "status",
+            "uploadSessionUrl"
+        ]
+    }
+}
+```
