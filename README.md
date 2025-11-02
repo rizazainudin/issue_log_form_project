@@ -105,9 +105,17 @@ Overview
 4. **Compose Message**: Builds an email body informing the issuer that the issue has been resolved and requesting confirmation.
 5. **Send Email with Options**: Sends an email that includes actionable buttons ("Approve" and "Reject").
 6. **Condition** – Evaluates the issuer’s response to update the issue status accordingly.
-   6.1. If "Approve", update SharePoint item status to "Completed".
-   6.2. If "Rejected", notify developer to connect individually with issuer.
+   - If "Approve", update SharePoint item status to "Completed".
+   - If "Rejected", notify developer to connect individually with issuer.
 
 *Scope 2: CATCH (Error Handling)*
 
 Post Message in Chat – Sends an alert to a Teams channel if the main process fails, is skipped, or times out.
+
+**Flow 2 Screenshot**:
+
+![Flow 2 Snap 1](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_2_1.png)
+![Flow 2 Snap 2](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_2_2.png)
+
+
+
