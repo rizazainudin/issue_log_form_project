@@ -1,0 +1,42 @@
+{
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string"
+            },
+            "link": {
+                "type": "string"
+            },
+            "id": {
+                "type": "string"
+            },
+            "type": {},
+            "size": {
+                "type": "integer"
+            },
+            "referenceId": {
+                "type": "string"
+            },
+            "driveId": {
+                "type": "string"
+            },
+            "status": {
+                "type": "integer"
+            },
+            "uploadSessionUrl": {}
+        },
+        "required": [
+            "name",
+            "link",
+            "id",
+            "type",
+            "size",
+            "referenceId",
+            "driveId",
+            "status",
+            "uploadSessionUrl"
+        ]
+    }
+}
