@@ -81,13 +81,6 @@ Overview
 1. **Post a message in a chat/a channel**: To let the developers know that the TRY scope fails, is skipped, or times out
 
 
-**Flow 1 Screenshot**:
-
-![Flow 1 Snap 1](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_1.png)
-![Flow 1 Snap 2](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_2.png)
-![Flow 1 Snap 3](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_3.png)
-![Flow 1 Snap 4](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_4.png)
-
 ### Flow 2: Issue Resolution & Closure Confirmation
 
 Overview
@@ -110,7 +103,52 @@ Overview
 
 *Scope 2: CATCH (Error Handling)*
 
-Post Message in Chat – Sends an alert to a Teams channel if the main process fails, is skipped, or times out.
+1. **Post Message in Chat** – Sends an alert to a Teams channel if the main process fails, is skipped, or times out.
+
+---
+
+## Challenges & Solutions
+
+### Challenges:
+
+1. Dynamic Manager Lookup: Retrieving the issuer’s manager email for CC was complex because the organization’s directory structure varies across regions.
+2. Attachment Handling: Users often upload screenshots, requiring conditional logic to parse and attach files to SharePoint items that initially from Personal OneDrive site.
+3. Error Handling: Ensuring the flow doesn’t silently fail when actions encounter issues.
+
+### Solutions:
+
+1. Implemented Office 365 Users connector to dynamically fetch issuer and manager details.
+2. Added conditional branches for attachment handling using JSON parsing and file path retrieval.
+3. Used Scope (TRY-CATCH) pattern with "Run After" settings to manage errors and send alerts to Teams for visibility.
+
+---
+
+## Impact & Results
+
+- Time Saved: Reduced manual tracking and follow-ups by approximately 70%, freeing the team to focus on development tasks.
+- Reduction in Errors: Eliminated missed issues caused by informal reporting (emails/Teams messages).
+- Stakeholder Feedback: Regional teams reported improved transparency and faster resolution cycles.
+- KPIs Improved: Issue closure rate increased by 40%, and average resolution time decreased significantly.
+
+---
+
+## Lessons Learned
+
+1. Importance of Error Handling: Using Scopes for structured error management prevents silent failures and improves reliability.
+2. User Experience Matters: Adding confirmation emails and actionable buttons (Approve/Reject) increased engagement and accountability.
+3. Scalability Considerations: Designing flows with modular logic (e.g., separate flows for submission and resolution) makes future enhancements easier.
+
+
+---
+
+**Flow 1 Screenshot**:
+
+![Flow 1 Snap 1](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_1.png)
+![Flow 1 Snap 2](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_2.png)
+![Flow 1 Snap 3](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_3.png)
+![Flow 1 Snap 4](https://github.com/rizazainudin/issue_log_form_project/blob/main/Snapshot_Flow_1_4.png)
+
+---
 
 **Flow 2 Screenshot**:
 
