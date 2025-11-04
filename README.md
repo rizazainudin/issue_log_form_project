@@ -1,5 +1,7 @@
 # Issue Reporting Form
 An automated solution built with Microsoft Forms, Power Automate, and SharePoint to streamline issue reporting and tracking for the regional Automation & Analytics team. 
+
+
 The flow captures issue details, identifies the issuer and their manager, logs the data in a SharePoint list, handles attachments, and sends notifications via email and Teams. 
 A secondary flow confirms resolution and closure, ensuring visibility and accountability for ad hoc tasks.
 
